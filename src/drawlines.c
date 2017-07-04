@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:42:35 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 11:23:36 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 13:02:10 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void			draw_all(t_env *env)
 	// draw_vert(env);
 	mlx_loop(env->mlx);
 }
-
 
 void		place_points(t_env *env)
 {
@@ -46,9 +45,29 @@ void		draw_horz(t_env *env)
 {
 	int j;
 	int k;
+	int tmpy;
 
 	j = 0;
+	while (j < env->len)
+	{
+		env->d_x = env->points[j][k + 1].x - env->points[j][k].x
+		env->d_y = env->points[j][k + 1].y - env->points[j][k].y
+		env->D = 2 * env->d_y - env->d_x;
+		tmpy = env->points[j][k].y
+		while ()
+		{
+			mlx_pixel_put(env->mlx, env->win, env->points[j][k].x, env->points[j][k].y, env->color);
+			if (env->D > 0)
+			{
+				tmpy += 1;
+				env->D -= (2 * env->d_y);
+			}
+			D += (2 * env->d_y);
 
+		}
+
+
+	}
 }
 
 void		draw_vert(t_env *env)

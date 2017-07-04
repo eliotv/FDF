@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 11:30:54 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 11:23:34 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:54:44 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_env			*init_env(void)
 	env->x = 0;
 	env->d_x = 0;
 	env->d_y = 0;
+	env->D = 0;
 	env->x_c = 0;
 	env->y_c = 0;
 	env->color = 0x00FFFFFF;

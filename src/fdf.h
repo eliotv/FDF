@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 18:40:22 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 11:23:36 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:54:45 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_env
 	int				y;
 	int				d_x;
 	int				d_y;
+	int				D;
 	int				color;
 	int				x_scale;
 	int				y_scale;
