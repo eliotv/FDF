@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 11:30:54 by evanheum          #+#    #+#             */
-/*   Updated: 2017/06/30 20:47:42 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:23:34 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_env			*init_env(void)
 	env = (t_env*)malloc(sizeof(t_env));
 	env->width = 0;
 	env->len = 0;
-	env->w_wid = 1000;
-	env->w_len = 1000;
+	env->w_wid = 1920;
+	env->w_len = 1080;
 	env->x_scale = 0;
 	env->y_scale = 0;
 	env->y1 = 0;
@@ -32,35 +32,37 @@ t_env			*init_env(void)
 	env->x_c = 0;
 	env->y_c = 0;
 	env->color = 0x00FFFFFF;
+	env->mlx = NULL;
+	env->win = NULL;
 	env->d2_plane = 0;
-	env->points = NULL;
-	env->argv_1 = NULL;
+	env->rx = 0.785398;
+    env->ry = 0;
+    env->rz = 0.615472907;
+	env->xs = 0;
+	env->ys = 0;
 	return (env);
 }
 
-void			ft_makepoints(t_env *env)
+void			store_points(t_env *env)
 {
-	t_points	**points;
-	int			y;
-	int			x;
+	int			j;
+	int			k;
 
-	y = 0;
-	points = (t_points**)malloc(sizeof(t_points**) * env->len);
-		while (y < env->len)
+	j = 0;
+	env->points = (t_points**)malloc(sizeof(t_points*) * env->len);
+	while (j < env->len)
 	{
-		points[y] = (t_points*)malloc(sizeof(t_points*) * env->width);
-		x = 0;
-		while (x < env->width)
+		k = 0;
+		env->points[j] = (t_points*)malloc(sizeof(t_points) * env->width);
+		while (k < env->width)
 		{
-			points[y][x].x = env->x1 + (x * (env->x_c / env->width));
-			points[y][x].y = env->y1 + (y * (env->y_c / env->len));
-			points[y][x].z = env->d2_plane[y][x];
-			printf("[%3f][%3f][%3f]\n", points[y][x].x, points[y][x].y, points[y][x].z);
-			x++;
+			env->points[j][k].x = env->x1 + (k * (env->x_c / env->width));
+			env->points[j][k].y = /*env->y1 +*/(j * (env->y_c / env->len));
+			env->points[j][k].z = env->d2_plane[j][k];
+			k++;
 		}
-		y++;
+		j++;
 	}
-	//printf("[%3f][%3f][%3f]\n", points[0][0].x, points[0][0].y, points[0][0].z);
 }
 
 int				main(int ac, char **av)
@@ -76,7 +78,8 @@ int				main(int ac, char **av)
 	env = init_env();
 	fd = open(av[1], O_RDONLY);
 	d2_num_plane(env, fd);
-	ft_makepoints(env);
-//	draw_points(env);
+	store_points(env);
+	xy_slope(env);
+	draw_all(env);
 	return (0);
 }

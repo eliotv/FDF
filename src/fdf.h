@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 18:40:22 by evanheum          #+#    #+#             */
-/*   Updated: 2017/06/30 19:13:32 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:23:36 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/stat.h>
 # include <sys/fcntl.h>
 # include <stdio.h>
+# include <math.h>
 
 typedef struct		s_points
 {
@@ -45,7 +46,13 @@ typedef struct		s_env
 	int				y_scale;
 	int				y_c;
 	int				x_c;
-	char			*argv_1;
+	void 			*mlx;
+	void 			*win;
+	float			ry;
+	float			rz;
+	float			rx;
+	int				*xs;
+	int				*ys;
 	t_points		**points;
 }					t_env;
 /*
@@ -53,14 +60,18 @@ typedef struct		s_env
 */
 t_env				*init_env(void);
 void				printstring(t_env *env);
-void				ft_makepoints(t_env *env);
+void				store_points(t_env *env);
 /*
 ** ---------- drawlines.c ----------
 */
-void				draw_points(t_env *env);
+void				draw_all(t_env *env);
+void 				place_points(t_env *env);
+void				draw_vert(t_env *env);
+void				draw_horz(t_env *env);
 /*
 ** ---------- cord_plane.c ---------
 */
 void				d2_num_plane(t_env *env, int fd);
 void				plot_points(t_env *env, char *line, int y);
+void				xy_slope(t_env *env);
 #endif
