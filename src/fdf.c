@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 11:30:54 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 11:54:44 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/04 16:28:50 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ t_env			*init_env(void)
 	env->len = 0;
 	env->w_wid = 1920;
 	env->w_len = 1080;
-	env->x_scale = 0;
-	env->y_scale = 0;
 	env->y1 = 0;
 	env->y = 0;
 	env->x1 = 0;
 	env->x = 0;
-	env->d_x = 0;
-	env->d_y = 0;
-	env->D = 0;
+	env->run = 0;
+	env->tmpy = 0;
+	env->tmpx = 0;
+	env->delta = 0;
+	env->range = 0;
+	env->rise = 0;
 	env->x_c = 0;
 	env->y_c = 0;
 	env->color = 0x00FFFFFF;
@@ -39,8 +40,10 @@ t_env			*init_env(void)
 	env->rx = 0.785398;
     env->ry = 0;
     env->rz = 0.615472907;
-	env->xs = 0;
-	env->ys = 0;
+	env->m = 0;
+	env->adjust = 0;
+	env->threshold = 0;
+	env->offset = 0;
 	return (env);
 }
 
@@ -58,7 +61,7 @@ void			store_points(t_env *env)
 		while (k < env->width)
 		{
 			env->points[j][k].x = env->x1 + (k * (env->x_c / env->width));
-			env->points[j][k].y = /*env->y1 +*/(j * (env->y_c / env->len));
+			env->points[j][k].y = j * (env->y_c / env->len);
 			env->points[j][k].z = env->d2_plane[j][k];
 			k++;
 		}
