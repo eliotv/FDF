@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 11:53:44 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 16:00:39 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/05 20:48:41 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,17 @@ void 	xy_alg(t_env *env, int j, int k)
 void		convert_points(t_env *env, char *line, int y)
 {
 	int		x;
+	char **string;
 
 	x = 0;
 	env->d2_plane[y] = (int*)malloc(sizeof(int) * env->width);
 	while (x < env->width)
 	{
-
-		while (*line == ' ')
-			line++;
-		while (*line != ' ' && *line != '\0')
-		{
-			env->d2_plane[y][x] = ft_atoi(line);
-			line++;
-		}
+		string = ft_strsplit(line, ' ');
+		env->d2_plane[y][x] = ft_atoi(string[x]);
 		x++;
 	}
+	printf("\n");
 }
 
 void		d2_num_plane(t_env *env, int fd)

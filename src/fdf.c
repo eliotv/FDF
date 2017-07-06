@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 11:30:54 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 16:28:50 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/05 20:51:09 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_env			*init_env(void)
 	env->rise = 0;
 	env->x_c = 0;
 	env->y_c = 0;
-	env->color = 0x00FFFFFF;
+	env->color = 0xFFFFFF;
 	env->mlx = NULL;
 	env->win = NULL;
 	env->d2_plane = 0;
@@ -60,9 +60,11 @@ void			store_points(t_env *env)
 		env->points[j] = (t_points*)malloc(sizeof(t_points) * env->width);
 		while (k < env->width)
 		{
-			env->points[j][k].x = env->x1 + (k * (env->x_c / env->width));
-			env->points[j][k].y = j * (env->y_c / env->len);
-			env->points[j][k].z = env->d2_plane[j][k];
+			env->points[j][k].x = env->x1 + (k * (700 / env->width));
+			env->points[j][k].y = env->y1 + (j * (700 / env->width));
+			env->points[j][k].z =  5 * env->d2_plane[j][k];
+			// printf ("[%3d][%3f]\n", env->d2_plane[j][k], env->points[j][k].z);
+			// printf("[%3f][%3f][%3f]\n", env->points[j][k].x, env->points[j][k].y, env->points[j][k].z);
 			k++;
 		}
 		j++;
@@ -83,6 +85,7 @@ int				main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	d2_num_plane(env, fd);
 	store_points(env);
+	// rotation(env);
 	xy_slope(env);
 	draw_all(env);
 	return (0);

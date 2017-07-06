@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 18:40:22 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 18:15:34 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/05 20:38:00 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void				store_points(t_env *env);
 ** ---------- drawlines.c ----------
 */
 void				draw_all(t_env *env);
-void 				init_draw_var(t_env *env, int j, int k);
+void 				init_draw_right(t_env *env, int j, int k);
+void				init_draw_down(t_env *env, int j, int k);
 /*
 ** --------- drawslopes.c ----------
 */
@@ -76,7 +77,6 @@ void				draw_down(t_env *env);
 void				draw_sharp(t_env *env);
 void				draw_gradual(t_env *env);
 void				draw_straight(t_env *env);
-
 /*
 ** ---------- cord_plane.c ---------
 */
@@ -84,4 +84,10 @@ void				d2_num_plane(t_env *env, int fd);
 void				convert_points(t_env *env, char *line, int y);
 void				xy_slope(t_env *env);
 void				xy_alg(t_env *env, int j, int k);
+/*
+** ----------- rotation.c ----------
+*/
+void				rotation(t_env *env);
+void				rot_x(t_env *env);
+void				rot_y(t_env *env);
 #endif

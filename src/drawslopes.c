@@ -6,7 +6,7 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/04 15:39:52 by evanheum          #+#    #+#             */
-/*   Updated: 2017/07/04 18:15:02 by evanheum         ###   ########.fr       */
+/*   Updated: 2017/07/05 20:39:01 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	draw_straight(t_env *env)
 
 void	draw_gradual(t_env *env)
 {
-
 	env->delta = fabsf(env->m);
 	env->tmpy = env->y;
 	if (env->x1 < env->x)
@@ -45,6 +44,7 @@ void	draw_gradual(t_env *env)
 	env->range = (env->x1 - env->x);
 	while (env->x  < env->x1)
 	{
+
 		mlx_pixel_put(env->mlx, env->win, env->x, env->tmpy, env->color);
 		env->offset += env->delta;
 		if (env->offset >= env->threshold)
@@ -92,7 +92,7 @@ void	draw_down(t_env *env)
 		k = 0;
 		while ( k < env->width)
 		{
-			init_draw_var(env, j, k);
+			init_draw_down(env, j, k);
 			if (env->run == 0 && j + 1 < env->len)
 				draw_straight(env);
 			else
@@ -106,10 +106,10 @@ void	draw_down(t_env *env)
 				else
 					draw_sharp(env);
 			}
+			k++;
 		}
-		k++;
+		j++;
 	}
-	j++;
 }
 
 void	draw_right(t_env *env)
@@ -123,7 +123,8 @@ void	draw_right(t_env *env)
 		k = 0;
 		while (k < env->width)
 		{
-			init_draw_var(env, j, k);
+
+			init_draw_right(env, j, k);
 			if (env->run == 0 && k + 1 < env->len)
 				draw_straight(env);
 			else
@@ -137,8 +138,8 @@ void	draw_right(t_env *env)
 				else
 					draw_sharp(env);
 			}
+			k++;
 		}
-		k++;
+		j++;
 	}
-	j++;
 }
